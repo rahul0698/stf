@@ -1,5 +1,5 @@
 module.exports = function MenuCtrl($scope, $rootScope, SettingsService,
-  $location) {
+  $location, $http) {
 
   SettingsService.bind($scope, {
     target: 'lastUsedDevice'
@@ -13,5 +13,13 @@ module.exports = function MenuCtrl($scope, $rootScope, SettingsService,
   $scope.$on('$routeChangeSuccess', function() {
     $scope.isControlRoute = $location.path().search('/control') !== -1
   })
+
+  $scope.logout = function() {
+    /*var cookies = $cookies.getAll()
+    angular.forEach(cookies, function(v, k) {
+      $cookies.remove(k)
+    })*/
+    $http.get('/logout').then()
+  }
 
 }

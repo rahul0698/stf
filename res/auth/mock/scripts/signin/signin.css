@@ -77,3 +77,23 @@ body {
     background-color: transparent;
     color: #00c7f7;
 }
+
+
+.login2 .login-wrapper .loginbtn {
+  width:40%;
+  margin-right: 42px !important;
+}
+
+.login2 .login-wrapper .signUpbtn {
+  padding: 10px 0 12px;
+  margin: 20px 0 30px;
+  width:50%;
+}
+.login2 .login-wrapper .password_box {
+  margin-top:20px;
+}
+
+.login2 .login-wrapper .signupbtn {
+  width:100%;
+}
+

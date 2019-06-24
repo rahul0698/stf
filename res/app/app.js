@@ -24,6 +24,7 @@ require.ensure([], function(require) {
         .otherwise({
           redirectTo: '/devices'
         })
+      //$locationProvider.html5Mode(true)
     })
 
     .config(function(hotkeysProvider) {

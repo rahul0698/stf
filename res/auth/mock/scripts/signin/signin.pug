@@ -1,9 +1,9 @@
 .login2(ng-controller='SignInCtrl')
   .login-wrapper
     a(href='./')
-      img(width='160', height='160', src='/static/logo/exports/STF-512.png', title='STF')
+      img(width='175', height='105', src='/static/logo/exports/STF-512.png', title='TestEverWhere')
 
-    form(name='signin', novalidate, ng-submit='submit()')
+    form(name='signin', novalidate, ng-submit='submit()' ng-if="!isSignUp")
       .alert.alert-danger(ng-show='error')
         span(ng-show='error.$invalid', translate) Check errors below
         span(ng-show='error.$incorrect', translate) Incorrect login details
@@ -28,4 +28,35 @@
           span(ng-show='signin.email.$error.email', translate) Please enter a valid email
           span(ng-show='signin.email.$error.required', translate) Please enter your email
 
-      input.btn.btn-lg.btn-primary.btn-block(type='submit', value='Log In')
+      input.btn.btn-lg.btn-primary.loginbtn(type='submit', value='Log In')
+      input.btn.btn-lg.btn-primary.signUpbtn(type='submit', value='Sign Up' ng-click="runSignUp()")
+
+
+    form(name='signup', novalidate, ng-submit='signUpSubmit()' ng-if="isSignUp")
+      .alert.alert-success(ng-show='isUserCreated')
+        span {{successMessage}}
+      .alert.alert-danger(ng-show='error')
+        span(ng-show='error.$invalid', translate) Check errors below
+        span(ng-show='error.$server', translate) Server error. Check log output.
+        span(ng-show='error.$userExists', translate) {{errorMessage}}.
+
+      .form-group
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user
+          input.form-control(ng-model='name', name='name', required, type='text', placeholder='Name',
+          autocorrect='off', autocapitalize='off', spellcheck='false', autocomplete='section-login username')
+        .alert.alert-warning(ng-show='signin.username.$dirty && signin.username.$invalid')
+          span(translate) Please enter your name
+      .form-group
+        .input-group
+          span.input-group-addon
+            i.fa.fa-envelope
+          input.form-control(ng-model='email', name='email', required, type='email', placeholder='E-mail',
+          autocorrect='off', autocapitalize='off', spellcheck='false', autocomplete='section-login email')
+        .alert.alert-warning(ng-show='signin.email.$dirty && signin.email.$invalid')
+          span(ng-show='signin.email.$error.email', translate) Please enter a valid email
+          span(ng-show='signin.email.$error.required', translate) Please enter your email
+
+
+      input.btn.btn-lg.btn-primary.login_btn.signupbtn(type='submit', value='Sign Up')
